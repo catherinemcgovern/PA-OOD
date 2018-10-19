@@ -1,0 +1,11 @@
+C:\Users\Catherine\Desktop\5360 - Ob des abd Anal\PA1-OOD\NewStudentDatabase\obj\Debug\netcoreapp2.1\NewStudentDatabase.csprojAssemblyReference.cache
+C:\Users\Catherine\Desktop\5360 - Ob des abd Anal\PA1-OOD\NewStudentDatabase\obj\Debug\netcoreapp2.1\NewStudentDatabase.csproj.CoreCompileInputs.cache
+C:\Users\Catherine\Desktop\5360 - Ob des abd Anal\PA1-OOD\NewStudentDatabase\obj\Debug\netcoreapp2.1\NewStudentDatabase.AssemblyInfoInputs.cache
+C:\Users\Catherine\Desktop\5360 - Ob des abd Anal\PA1-OOD\NewStudentDatabase\obj\Debug\netcoreapp2.1\NewStudentDatabase.AssemblyInfo.cs
+C:\Users\Catherine\Desktop\5360 - Ob des abd Anal\PA1-OOD\NewStudentDatabase\bin\Debug\netcoreapp2.1\NewStudentDatabase.deps.json
+C:\Users\Catherine\Desktop\5360 - Ob des abd Anal\PA1-OOD\NewStudentDatabase\bin\Debug\netcoreapp2.1\NewStudentDatabase.runtimeconfig.json
+C:\Users\Catherine\Desktop\5360 - Ob des abd Anal\PA1-OOD\NewStudentDatabase\bin\Debug\netcoreapp2.1\NewStudentDatabase.runtimeconfig.dev.json
+C:\Users\Catherine\Desktop\5360 - Ob des abd Anal\PA1-OOD\NewStudentDatabase\bin\Debug\netcoreapp2.1\NewStudentDatabase.dll
+C:\Users\Catherine\Desktop\5360 - Ob des abd Anal\PA1-OOD\NewStudentDatabase\bin\Debug\netcoreapp2.1\NewStudentDatabase.pdb
+C:\Users\Catherine\Desktop\5360 - Ob des abd Anal\PA1-OOD\NewStudentDatabase\obj\Debug\netcoreapp2.1\NewStudentDatabase.dll
+C:\Users\Catherine\Desktop\5360 - Ob des abd Anal\PA1-OOD\NewStudentDatabase\obj\Debug\netcoreapp2.1\NewStudentDatabase.pdb

@@ -8,7 +8,7 @@ using System.Linq;
 
 using System.Text;
 
-
+using StudentDatabase;
 
 namespace NewStudentDatabase
 {
@@ -17,16 +17,37 @@ namespace NewStudentDatabase
        public static void Main()
         {
 
-            GradStudent.WriteToConsole();
+            
+                   List<Gradstudent> gradstudents = new List<Gradstudent>();
+             gradstudents.Add(new Gradstudent("John", new DateTime(2019, 10, 2), 12234, "CIS", 3,"BSc"));
+            gradstudents.Add(new Gradstudent("Doe", new DateTime(1971, 5, 22), 12234, "CIS", 3, "BSc"));
 
-          
+            MakeList(gradstudents);
+
+        }
+    
+            //Gradstudent.WriteToConsole();
+
+              public static void MakeList(List<Gradstudent> gradstudents)
+              {
+                  foreach (var Gradstudent in gradstudents)
+                   {
+        Console.WriteLine(Gradstudent);
+    }
+   
+//List<Gradstudent>.ForEach(Gradstudent => Console.Write(Gradstudent.Major));
+    }   
+    }
+    
+    }
+       // Console.WriteLine({theGradList.}StudName + "  " + theGradList.StudId);  
+   
+
 
 
             
 
-              }
-        }
-                    /*   
+                       /*   
                         },
                     new Gradstudent()
                         {
@@ -42,7 +63,7 @@ namespace NewStudentDatabase
         
         
         
-        }
+        
 
         
 

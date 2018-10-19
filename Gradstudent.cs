@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using System.Linq;
-using System.Windows.Forms;
+
 
 
 using System.Text;
@@ -15,18 +15,18 @@ namespace StudentDatabase
     public class Gradstudent : Student
     {
 
-            public string PreviousDegree {get; set;}
+            private string PreviousDegree {get; set;}
 
-            public GradStudent(string studentName, DateTime dateOfBirth, long studId, string major, float gpa, string previousDegree : base (studentName, dateOfBirth, studId, major, gpa))
+            public Gradstudent(string studentName, DateTime dateOfBirth, long studId, string major, float gpa, string previousDegree) : base (studentName, dateOfBirth, studId, major, gpa)
 
                 {
                 
-                    PreviousDegree = previousDegree;
+                    this.PreviousDegree = previousDegree;
 
                 }  
 
-            public string PreviousDegree 
-                {get; set;}
+            //public string PreviousDegree 
+               // {get; set;}
     
 
                 public override string ToString() =>
@@ -35,15 +35,11 @@ namespace StudentDatabase
                 //var gradstudents = new[]{ 
 
 
-                    List<GradStudent> gradstudents = new List<GradStudents>
-             gradstudents.Add(new GradStudent("John", 01/01/81, 12234, "CIS", 3.00,"BSc"),
-            gradstudents.Add(new GradStudent("John", 01/01/81, 12234, "CIS", 3.00,"BSc")
 
-
-
+                }
 
               }
-
+/* 
               public static void WriteToConsole<T>(this IList<T> GradStudent)
               {
                 int count = GradStudent.Count();
@@ -55,8 +51,7 @@ namespace StudentDatabase
                 }
     
                 
-    }
-}
+    
 
 
 
@@ -110,7 +105,7 @@ public static void IterateThroughList()
         Console.WriteLine(theGradList.studentName + "  " + theGradList.studId);  
     }   */
 
-}
+
 /*private static void IterateThroughList()  
 {  
     var theGalaxies = new List<Galaxy>  
