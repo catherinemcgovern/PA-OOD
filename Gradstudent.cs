@@ -17,11 +17,12 @@ namespace StudentDatabase
 
             private string PreviousDegree {get; set;}
 
-            public Gradstudent(string studentName, DateTime dateOfBirth, long studId, string major, float gpa, string previousDegree) : base (studentName, dateOfBirth, studId, major, gpa)
+            public Gradstudent(string studentName, DateTime dateOfBirth, long studId, string major, long gpa, string previousDegree) : base (studentName, dateOfBirth, studId, major, gpa)
 
                 {
-                
+                    
                     this.PreviousDegree = previousDegree;
+                    
 
                 }  
 
