@@ -24,6 +24,18 @@ namespace NewStudentDatabase
 
 //START OF THE MENU STUFF
 
+        CreateMenu(gradstudents);
+
+
+
+            //MakeList(gradstudents);
+
+        }
+
+
+        public static void CreateMenu(List<Gradstudent> gradstudents)
+
+        {
 Console.WriteLine("Welcome to the Student Datatbase");
  bool validChoice;
  
@@ -39,8 +51,9 @@ Console.WriteLine("Welcome to the Student Datatbase");
                 Console.WriteLine("--------------------------------------------");
 
                 Console.WriteLine( "Commands:");
-                Console.WriteLine("m) Full List of GradStudents-Woot!!"); 
+                Console.WriteLine("g) Full List of GradStudents-Woot!!"); 
                 Console.WriteLine("a) Add a GradStudent!!"); 
+                Console.WriteLine("s) Search for a GradStudent, then update info for him"); 
  
                 Console.WriteLine("--------------------------------------------");
 
@@ -52,7 +65,7 @@ Console.WriteLine("Welcome to the Student Datatbase");
                 {
 
 
-                    case "m":
+                    case "g":
                     MakeList(gradstudents);
                     validChoice = false;
                     break;
@@ -62,66 +75,10 @@ Console.WriteLine("Welcome to the Student Datatbase");
                     validChoice = false;
                     break;
 
-                         
-                    case "e":
-                        return;
-                    default: 
-                        validChoice = false;
-                        Console.WriteLine("Unknown command.");
-                        break;
-                }
-
-                }
-                catch (FormatException)
-                {
-                    // This try...catch block catches the FormatException that Convert.ToInt32 will throw 
-                    // if the user inputs text or something that cannot be converted to an integer.
-                    validChoice = false;
-                    Console.WriteLine("Invalid choice. Please try again.");
-                }
-            } while (validChoice == false); // Inner loop ends when validChoice is true
-
-
-
-
-//END OF THE MENU STUFF
-
-        /* Console.WriteLine("Welcome to the Student Datatbase");
- bool validChoice;
- 
- do // inner do...while loop is to keep looping until the user picks a valid menu selection
-            {            //Menu Stuff
-             validChoice = true;
-
-              
-
-                Console.WriteLine("--------------------------------------------");
-
-                Console.WriteLine("Please select a menu option below:");
-                Console.WriteLine("--------------------------------------------");
-
-                Console.WriteLine( "Commands:");
-                Console.WriteLine("l) Full List of GradStudents-Woot!!"); 
-                Console.WriteLine("a) Add a GradStudent!!"); 
- 
-                Console.WriteLine("--------------------------------------------");
-
-              try
-                {
-                Console.Write("> ");
-                var command = Console.ReadLine();
-                switch (command)
-                {
-
-
-                    case "m":
-                    Commands.MakeList();
-                    validChoice = false;
-                    break;
-                    
-                    case "a":
-                    Commands.AddGradStudent();
-                    validChoice = false;
+                    case "s":
+                  Console.WriteLine("please enter someone's name");
+                    string term = Console.ReadLine();
+                    SearchGradStudent(gradstudents, term);
                     break;
 
                          
@@ -143,10 +100,8 @@ Console.WriteLine("Welcome to the Student Datatbase");
                 }
             } while (validChoice == false); // Inner loop ends when validChoice is true
 
- */
 
 
-            //MakeList(gradstudents);
 
         }
     
@@ -185,7 +140,7 @@ Console.WriteLine("Welcome to the Student Datatbase");
                 gradstudents.Add(new Gradstudent(newName, NewDateTime, newStudID, newMajor, newGPA,newPrevDegree));
 
 
-                Console.WriteLine("Let's see if the list change");
+                Console.WriteLine("Let's see if the list changed");
 
                  foreach (var Gradstudent in gradstudents)
                    {
@@ -203,74 +158,92 @@ Console.WriteLine("Welcome to the Student Datatbase");
                 
 
     }
-   
-//List<Gradstudent>.ForEach(Gradstudent => Console.Write(Gradstudent.Major));
-    }   
+    
+
+//THis is the start of the search/update function
+
+            public static void SearchGradStudent(List<Gradstudent> gradstudents, string term)
+
+    // public static List<Gradstudent> FindInGtudent(string term)
+    {
+    List<Gradstudent> list = new List<Gradstudent>();
+
+    Console.WriteLine($"The method ran!!!!");
+        foreach  (var Gradstudent in gradstudents)
+            {
+               // Console.WriteLine(Gradstudent);
+                {
+               if (Gradstudent.StudName == term)
+                    {
+                    
+                        Console.WriteLine($"Here's what I found: {Gradstudent.StudName}{Gradstudent.StudId}{Gradstudent.Major}");
+                       
+
+                        //switch statement for updates
+
+                        Console.WriteLine("what do you want to update");
+                        Console.WriteLine("select m to change the students major");
+ bool validChoice;
+ 
+ do // inner do...while loop is to keep looping until the user picks a valid menu selection
+            {            //Menu Stuff
+             validChoice = true;
+
+              
+
+
+                         try
+                {
+                Console.Write("> ");
+                var command = Console.ReadLine();
+                switch (command)
+                {
+
+
+                    case "m":
+                    //MakeList(gradstudents);
+                    Console.WriteLine("What is the new major of the student");
+                    Gradstudent.Major = Console.ReadLine();
+                    Console.WriteLine($"The Entry for the Gradstudent is now {Gradstudent.StudName} {Gradstudent.StudId}{Gradstudent.Major}");
+                    CreateMenu(gradstudents);
+                    validChoice = false;
+                    break;
+
+                         
+                    case "e":
+                    Main();
+                      break; 
+                    default: 
+                        validChoice = false;
+                        Console.WriteLine("Unknown command. Please choose another search/update option or please select e to exite the system ");
+                        break;
+                }
+
+                }
+                catch (FormatException)
+                {
+                    // This try...catch block catches the FormatException that Convert.ToInt32 will throw 
+                    // if the user inputs text or something that cannot be converted to an integer.
+                    validChoice = false;
+                    Console.WriteLine("Invalid choice. Please try again.");
+                }
+            } while (validChoice == false); // Inner loop ends when validChoice is true
+
+
+
+
+
+
+
+                        //end switch statements for updates
+
+                       // break; // If you only want to find the first instance a break here would be best for your application
+                    } 
+                }
+            }
+        }
+
+    
     }
-    
-    
-       // Console.WriteLine({theGradList.}StudName + "  " + theGradList.StudId);  
-   
 
-
-
-            
-
-                       /*   
-                        },
-                    new Gradstudent()
-                        {
-                        var GradStudent = new List<gradStudent>
-                        studentName = "John",
-                        dateOfBirth = 05/22/71,
-                        studId = 12448,
-                        major = CIS,
-                        gpa = 3.25,
-                        previousDegree = "BIT"
-                        },
-                }*/
-        
-        
-        
-        
-
-        
-
-    // Output:  
-    //  Tadpole  400  
-    //  Pinwheel  25  
-    //  Milky Way  0  
-    //  Andromeda  3  
-
-
-            
-            
-            
-            
-            
-           /*  Console.WriteLine("Welcome");
-//GradStudent gradStudent
-       ListAllGradStudents.ListAllGradStudents();
-      
-
-
-
-           /*
-           
-           foreach(PropertyDescriptor descriptor in TypeDescriptor.GetProperties(obj))
-{
-    string name=descriptor.Name;
-    object value=descriptor.GetValue(obj);
-    Console.WriteLine("{0}={1}",name,value);
-} */
-
-        
-
-          // studentName,dateOfBirth, studId, major, gpa, previousDegree
-          //
-
-
-
-    
-
-        
+}
