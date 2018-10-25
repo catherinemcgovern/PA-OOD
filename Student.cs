@@ -16,10 +16,10 @@ namespace StudentDatabase
         public DateTime DateOfBirth { get; set; }
         public long StudId { get; set; }
         public string Major { get; set; }
-        public long GPA { get; set; }
+        public float GPA { get; set; }
 
 
-          public Student(string studentName, DateTime dateOfBirth, long studId, string major, long gpa)
+          public Student(string studentName, DateTime dateOfBirth, long studId, string major, float gpa)
 
           {
            

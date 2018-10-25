@@ -14,46 +14,50 @@ namespace NewStudentDatabase
 {
     public class Program
     {
-       public static void Main()
+        public static void Main()
         {
 
-            
-                   List<Gradstudent> gradstudents = new List<Gradstudent>();
-             gradstudents.Add(new Gradstudent("John", new DateTime(2019, 10, 2), 12234, "CIS", 3,"BSc"));
-            gradstudents.Add(new Gradstudent("Doe", new DateTime(1971, 5, 22), 12234, "CIS", 3, "BSc"));
+        //Make list of Gradstudents
+            List<Gradstudent> gradstudents = new List<Gradstudent>();
+            gradstudents.Add(new Gradstudent("John", new DateTime(2019, 01, 01), 12234, "CIS", float.Parse("3.00"),"BSc", "WTAMU", "CS", float.Parse("3.33")));
+            gradstudents.Add(new Gradstudent("Doe", new DateTime(1971, 5, 22), 12448, "CIS", float.Parse("3.25"), "BIT", "CSU", "CIS", float.Parse("3.5")));
+            gradstudents.Add(new Gradstudent("Alice", new DateTime(1991, 10, 15), 32558, "BA", float.Parse("3.8"), "BAcc", "USCD", "ACC", float.Parse("4.00")));
 
-//START OF THE MENU STUFF
+        //Make list of undergradstudents
+            List<Undergradstudent> undergradstudents = new List<Undergradstudent>();
+            undergradstudents.Add(new Undergradstudent("Bob", new DateTime(1999, 03, 01), 547857, "CIDM", float.Parse("4.00"), "PHS"));
+            undergradstudents.Add(new Undergradstudent("Charley", new DateTime(1999, 03, 01), 65888, "CIDM", float.Parse("3.5"), "LHS"));
+            undergradstudents.Add(new Undergradstudent("Eve", new DateTime(1995, 12, 01), 87785, "CIDM", float.Parse("3.7"), "AHS"));
 
-        CreateMenu(gradstudents);
-
-
-
-            //MakeList(gradstudents);
+        //Create Menu Method
+            CreateMenu(gradstudents, undergradstudents);
 
         }
 
 
-        public static void CreateMenu(List<Gradstudent> gradstudents)
+        public static void CreateMenu(List<Gradstudent> gradstudents, List<Undergradstudent> undergradstudents)
+
 
         {
-Console.WriteLine("Welcome to the Student Datatbase");
- bool validChoice;
+        Console.WriteLine("Welcome to the Student Datatbase");
+        bool validChoice;
  
- do // inner do...while loop is to keep looping until the user picks a valid menu selection
-            {            //Menu Stuff
+            do // inner do...while loop is to keep looping until the user picks a valid menu selection
+            {  //Writing the menu for the user
              validChoice = true;
-
-              
 
                 Console.WriteLine("--------------------------------------------");
 
                 Console.WriteLine("Please select a menu option below:");
                 Console.WriteLine("--------------------------------------------");
 
-                Console.WriteLine( "Commands:");
-                Console.WriteLine("g) Full List of GradStudents-Woot!!"); 
-                Console.WriteLine("a) Add a GradStudent!!"); 
+                Console.WriteLine( "I was to see:");
+                Console.WriteLine("g) Full List of Graduate Students"); 
+                Console.WriteLine("u) Full List of UndergradStudents"); 
+                Console.WriteLine("a) Add a GradStudent to the list"); 
+                Console.WriteLine("d) Add an Undergraduate Student to the list"); 
                 Console.WriteLine("s) Search for a GradStudent, then update info for him"); 
+                Console.WriteLine("v) Search for an UndergradStudent, then update info for him"); 
  
                 Console.WriteLine("--------------------------------------------");
 
@@ -69,6 +73,11 @@ Console.WriteLine("Welcome to the Student Datatbase");
                     MakeList(gradstudents);
                     validChoice = false;
                     break;
+
+                    case "u":
+                    MakeUgList(undergradstudents);
+                    validChoice = false;
+                    break;
                     
                     case "a":
                     AddAGradStudent(gradstudents);
@@ -78,7 +87,7 @@ Console.WriteLine("Welcome to the Student Datatbase");
                     case "s":
                   Console.WriteLine("please enter someone's name");
                     string term = Console.ReadLine();
-                    SearchGradStudent(gradstudents, term);
+                    SearchGradStudent(gradstudents, undergradstudents, term);
                     break;
 
                          
@@ -99,14 +108,19 @@ Console.WriteLine("Welcome to the Student Datatbase");
                     Console.WriteLine("Invalid choice. Please try again.");
                 }
             } while (validChoice == false); // Inner loop ends when validChoice is true
-
-
-
-
         }
     
-            //Gradstudent.WriteToConsole();
+     
+        //Here is the UNDERGRAD List Method
+              public static void MakeUgList(List<Undergradstudent> undergradstudents)
+              {
+                  foreach (var Undergradstudent in undergradstudents)
+                   {
+                        Console.WriteLine(Undergradstudent);
+                    }
+                }
 
+        //Here is the GRAD List Method
               public static void MakeList(List<Gradstudent> gradstudents)
               {
                   foreach (var Gradstudent in gradstudents)
@@ -119,7 +133,7 @@ Console.WriteLine("Welcome to the Student Datatbase");
                 {
                     //long newStudID;
                     //string major;
-                    //float newGPA;
+                    float newGPA;
                     //string newPrevDegree;
                     
                 Console.WriteLine("Let's create a new gradstudent");
@@ -132,12 +146,18 @@ Console.WriteLine("Welcome to the Student Datatbase");
                 Console.WriteLine("Please enter the student's major");
                 string newMajor = (Console.ReadLine());
                 Console.WriteLine("Please enter the student's GPA");
-                long newGPA = long.Parse(Console.ReadLine());
+                newGPA = float.Parse(Console.ReadLine());
                 Console.WriteLine("Please enter the student's Previous degree");
                 string newPrevDegree = (Console.ReadLine());
+                Console.WriteLine("Please enter the student's Previous university");
+                string newPrevUniversity = (Console.ReadLine());
+                Console.WriteLine("Please enter the student's Previous university");
+                string newUndergradMajor = (Console.ReadLine());
+                Console.WriteLine("Please enter the student's Undergraduate GPA");
+                float newUgGPA = float.Parse(Console.ReadLine());
 
 
-                gradstudents.Add(new Gradstudent(newName, NewDateTime, newStudID, newMajor, newGPA,newPrevDegree));
+                gradstudents.Add(new Gradstudent(newName, NewDateTime, newStudID, newMajor, newGPA, newPrevDegree, newPrevUniversity, newUndergradMajor, newUgGPA));
 
 
                 Console.WriteLine("Let's see if the list changed");
@@ -162,11 +182,12 @@ Console.WriteLine("Welcome to the Student Datatbase");
 
 //THis is the start of the search/update function
 
-            public static void SearchGradStudent(List<Gradstudent> gradstudents, string term)
+            public static void SearchGradStudent(List<Gradstudent> gradstudents, List<Undergradstudent> undergradstudents, string term)
 
     // public static List<Gradstudent> FindInGtudent(string term)
     {
     List<Gradstudent> list = new List<Gradstudent>();
+    List<Undergradstudent> ulist = new List<Undergradstudent>();
 
     Console.WriteLine($"The method ran!!!!");
         foreach  (var Gradstudent in gradstudents)
@@ -176,28 +197,28 @@ Console.WriteLine("Welcome to the Student Datatbase");
                if (Gradstudent.StudName == term)
                     {
                     
-                        Console.WriteLine($"Here's what I found: {Gradstudent.StudName}{Gradstudent.StudId}{Gradstudent.Major}");
+                        Console.WriteLine($"Here's what I found: {Gradstudent.StudName}{Gradstudent.StudId}{Gradstudent.Major}{Gradstudent.GPA}{Gradstudent.Major}{Gradstudent.Major}");
                        
 
                         //switch statement for updates
 
                         Console.WriteLine("what do you want to update");
-                        Console.WriteLine("select m to change the students major");
- bool validChoice;
+                        Console.WriteLine("select m to change the student's major");
+                        bool validChoice;
  
- do // inner do...while loop is to keep looping until the user picks a valid menu selection
-            {            //Menu Stuff
-             validChoice = true;
+                        do // inner do...while loop is to keep looping until the user picks a valid menu selection
+                        {            //Menu Stuff
+                        validChoice = true;
 
               
 
 
                          try
-                {
-                Console.Write("> ");
-                var command = Console.ReadLine();
-                switch (command)
-                {
+                            {
+                            Console.Write("> ");
+                            var command = Console.ReadLine();
+                            switch (command)
+                            {
 
 
                     case "m":
@@ -205,7 +226,7 @@ Console.WriteLine("Welcome to the Student Datatbase");
                     Console.WriteLine("What is the new major of the student");
                     Gradstudent.Major = Console.ReadLine();
                     Console.WriteLine($"The Entry for the Gradstudent is now {Gradstudent.StudName} {Gradstudent.StudId}{Gradstudent.Major}");
-                    CreateMenu(gradstudents);
+                    CreateMenu(gradstudents, undergradstudents);
                     validChoice = false;
                     break;
 
