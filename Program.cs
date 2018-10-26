@@ -25,9 +25,9 @@ namespace NewStudentDatabase
 
         //Make list of undergradstudents
             List<Undergradstudent> undergradstudents = new List<Undergradstudent>();
-            undergradstudents.Add(new Undergradstudent("Bob", new DateTime(1999, 03, 01), 547857, "CIDM", float.Parse("4.00"), "PHS"));
-            undergradstudents.Add(new Undergradstudent("Charley", new DateTime(1999, 03, 01), 65888, "CIDM", float.Parse("3.5"), "LHS"));
-            undergradstudents.Add(new Undergradstudent("Eve", new DateTime(1995, 12, 01), 87785, "CIDM", float.Parse("3.7"), "AHS"));
+            undergradstudents.Add(new Undergradstudent("Bob", new DateTime(1999, 03, 01), 547857, "CIDM", float.Parse("4.00"), "PHS", 1));
+            undergradstudents.Add(new Undergradstudent("Charley", new DateTime(1999, 03, 01), 65888, "CIDM", float.Parse("3.5"), "LHS", 0));
+            undergradstudents.Add(new Undergradstudent("Eve", new DateTime(1995, 12, 01), 87785, "CIDM", float.Parse("3.7"), "AHS", 3));
 
         //Create Menu Method
             CreateMenu(gradstudents, undergradstudents);
@@ -50,14 +50,21 @@ namespace NewStudentDatabase
 
                 Console.WriteLine("Please select a menu option below:");
                 Console.WriteLine("--------------------------------------------");
-
-                Console.WriteLine( "I was to see:");
+                Console.WriteLine("List View/Edit");
                 Console.WriteLine("g) Full List of Graduate Students"); 
                 Console.WriteLine("u) Full List of UndergradStudents"); 
                 Console.WriteLine("a) Add a GradStudent to the list"); 
                 Console.WriteLine("d) Add an Undergraduate Student to the list"); 
-                Console.WriteLine("s) Search for a GradStudent, then update info for him"); 
-                Console.WriteLine("v) Search for an UndergradStudent, then update info for him"); 
+                Console.WriteLine(); 
+                Console.WriteLine("Search-Update--------------------------------------------");
+                Console.WriteLine("Search/Update Grad Student Information:");
+                Console.WriteLine("y) Search by name"); 
+                Console.WriteLine("s) search by student ID"); 
+                Console.WriteLine("Search/Update Undergraduate Student Information:"); 
+                Console.WriteLine("z) Search by name"); 
+                Console.WriteLine("us) search by student ID"); 
+                Console.WriteLine("--------------------------------------------");                
+                Console.WriteLine("x) Exit the system"); 
  
                 Console.WriteLine("--------------------------------------------");
 
@@ -84,15 +91,22 @@ namespace NewStudentDatabase
                     validChoice = false;
                     break;
 
-                    case "s":
+                    case "y":
                   Console.WriteLine("please enter someone's name");
                     string term = Console.ReadLine();
                     SearchGradStudent(gradstudents, undergradstudents, term);
                     break;
 
-                         
-                    case "e":
-                        return;
+                    case "z":
+                  Console.WriteLine("please enter someone's name");
+                    string ugterm = Console.ReadLine();
+                    SearchUndergradStudent(gradstudents, undergradstudents, ugterm);
+                    break;
+ 
+
+                    case "x":
+                        Quit();
+                        break;
                     default: 
                         validChoice = false;
                         Console.WriteLine("Unknown command.");
@@ -151,7 +165,7 @@ namespace NewStudentDatabase
                 string newPrevDegree = (Console.ReadLine());
                 Console.WriteLine("Please enter the student's Previous university");
                 string newPrevUniversity = (Console.ReadLine());
-                Console.WriteLine("Please enter the student's Previous university");
+                Console.WriteLine("Please enter the student's Undergraduate major");
                 string newUndergradMajor = (Console.ReadLine());
                 Console.WriteLine("Please enter the student's Undergraduate GPA");
                 float newUgGPA = float.Parse(Console.ReadLine());
@@ -182,7 +196,15 @@ namespace NewStudentDatabase
 
 //THis is the start of the search/update function
 
+
+//SearchUndergradStudent(gradstudents, undergradstudents, ugterm)
+
+
+
+
             public static void SearchGradStudent(List<Gradstudent> gradstudents, List<Undergradstudent> undergradstudents, string term)
+
+            
 
     // public static List<Gradstudent> FindInGtudent(string term)
     {
@@ -198,7 +220,8 @@ namespace NewStudentDatabase
                     {
                     
                         Console.WriteLine($"Here's what I found: {Gradstudent.StudName}{Gradstudent.StudId}{Gradstudent.Major}{Gradstudent.GPA}{Gradstudent.Major}{Gradstudent.Major}");
-                       
+                    
+              
 
                         //switch statement for updates
 
@@ -250,21 +273,121 @@ namespace NewStudentDatabase
                 }
             } while (validChoice == false); // Inner loop ends when validChoice is true
 
+                    }}}
 
-
-
+Console.WriteLine("Term could not be found");
+                            Console.WriteLine("Please select a menu option");
+                            CreateMenu(gradstudents, undergradstudents);
 
 
 
                         //end switch statements for updates
 
                        // break; // If you only want to find the first instance a break here would be best for your application
-                    } 
+                    
                 }
-            }
-        }
+
+
+//Start of undergraduate search
 
     
+
+        public static void SearchUndergradStudent(List<Gradstudent> gradstudents, List<Undergradstudent> undergradstudents, string ugterm)
+                    
+
+            // public static List<Gradstudent> FindInGtudent(string term)
+            {
+            List<Gradstudent> list = new List<Gradstudent>();
+            List<Undergradstudent> ulist = new List<Undergradstudent>();
+
+            Console.WriteLine($"The method ran!!!!");
+                foreach  (var Undergradstudent in undergradstudents)
+                    {
+                    // Console.WriteLine(Gradstudent);
+                        {
+                    if (Undergradstudent.StudName == ugterm)
+                            {
+                            
+                                Console.WriteLine($"Here's what I found: {Undergradstudent.StudName}{Undergradstudent.StudId}{Undergradstudent.Major}{Undergradstudent.GPA}");
+                            
+                            
+                            
+
+                                //switch statement for updates
+
+                                Console.WriteLine("what do you want to update");
+                                Console.WriteLine("select m to change the student's major");
+                                bool validChoice;
+        
+                                do // inner do...while loop is to keep looping until the user picks a valid menu selection
+                                {            //Menu Stuff
+                                validChoice = true;
+
+                    
+
+
+                                try
+                                    {
+                                    Console.Write("> ");
+                                    var command = Console.ReadLine();
+                                    switch (command)
+                                    {
+
+
+                            case "m":
+                            //MakeList(gradstudents);
+                            Console.WriteLine("What is the new major of the student");
+                            Undergradstudent.Major = Console.ReadLine();
+                            Console.WriteLine($"The Entry for the Gradstudent is now {Undergradstudent.StudName} {Undergradstudent.StudId}{Undergradstudent.Major}");
+                            CreateMenu(gradstudents, undergradstudents);
+                            validChoice = false;
+                            break;
+
+                                
+                            case "e":
+                            Main();
+                            break; 
+                            default: 
+                                validChoice = false;
+                                Console.WriteLine("Unknown command. Please choose another search/update option or please select e to exite the system ");
+                                break;
+                        }
+
+                        }
+                        catch (FormatException)
+                        {
+                            // This try...catch block catches the FormatException that Convert.ToInt32 will throw 
+                            // if the user inputs text or something that cannot be converted to an integer.
+                            validChoice = false;
+                            Console.WriteLine("Invalid choice. Please try again.");
+                        }
+                    } while (validChoice == false); // Inner loop ends when validChoice is true
+
+                        }}}
+                    
+Console.WriteLine("Term could not be found");
+                                    Console.WriteLine("Please select a menu option");
+                                    CreateMenu(gradstudents, undergradstudents);
+
+                    
+            }
+                        //end switch statements for updates
+
+                       // break; // If you only want to find the first instance a break here would be best for your application
+                    
+
+//End of undergraduate searc
+
+            
+        
+
+           static void Quit()
+            //this method runs if no game has been played yet...(or going to be played...) a non-option for reals quit type of thing 
+        {
+            Environment.Exit(0);
+            Console.WriteLine("Application is shutting down");
+        }
+
+    }
     }
 
-}

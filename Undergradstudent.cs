@@ -17,19 +17,22 @@ namespace StudentDatabase
 
           private string PreviousHighSchool  {get; set;}
 
-       /*    private enum Classification 
+          private enum Classifications 
           {
               Freshman, Sophomore, Junior, Senior
-          }*/
+          }
+
+          private Classifications Classification {get; set;}
           
 
-          public Undergradstudent(string studentName, DateTime dateOfBirth, long studId, string major, float gpa, string previousHighSchool) : base (studentName, dateOfBirth, studId, major, gpa)
+          public Undergradstudent(string studentName, DateTime dateOfBirth, long studId, string major, float gpa, string previousHighSchool, int classification) : base (studentName, dateOfBirth, studId, major, gpa)
                   {
                     this.PreviousHighSchool = previousHighSchool;
-                    //this.Classification = classification;
+                 
                 }  
                  public override string ToString() =>
                 $"{base.ToString()} {PreviousHighSchool}";
+               
 
     }
 }
