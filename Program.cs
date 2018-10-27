@@ -1,15 +1,9 @@
 ﻿using System;
-
 using System.Collections;
-
 using System.Collections.Generic;
-
 using System.Linq;
-
 using System.Text;
-
 using StudentDatabase;
-
 namespace NewStudentDatabase
 {
     public class Program
@@ -168,7 +162,7 @@ namespace NewStudentDatabase
                 gradstudents.Add(new Gradstudent(newName, NewDateTime, newStudID, newMajor, newGPA, newPrevDegree, newPrevUniversity, newUndergradMajor, newUgGPA));
 
 
-                Console.WriteLine("Let's see if the list changed");
+                Console.WriteLine("Here is the updated list of Grad students");
 
                  foreach (var Gradstudent in gradstudents)
                    {
@@ -215,7 +209,7 @@ namespace NewStudentDatabase
                 //Now we update the Undergrad list with the information from the user inputs
                 undergradstudents.Add(new Undergradstudent(newName, NewDateTime, newStudID, newMajor, newGPA, newPrevHighSchool, newClassification));
 
-                Console.WriteLine("Let's see if the list changed");
+                Console.WriteLine("Here is the updated list of Undergraduate students");
 
                  foreach (var Undergradstudent in undergradstudents)
                    {
@@ -266,6 +260,7 @@ CreateMenu(gradstudents, undergradstudents);
 
                     case "m":
                     //MakeList(gradstudents);
+                    //Now we are going to update the studentinformation
                     Console.WriteLine("What is the new major of the student");
                     Gradstudent.Major = Console.ReadLine();
                     Console.WriteLine($"The Entry for the Gradstudent is now {Gradstudent.StudName} {Gradstudent.StudId}{Gradstudent.Major}");
@@ -307,8 +302,8 @@ foreach  (var Undergradstudent in undergradstudents)
                             
                                 //switch statement for updates
 
-                                Console.WriteLine("what do you want to update");
-                                Console.WriteLine("1) student's major 2_");
+                                Console.WriteLine("Select M to update the student's information");
+                                
                                 bool validChoice;
         
                                 do // inner do...while loop is to keep looping until the user picks a valid menu selection
@@ -325,9 +320,31 @@ foreach  (var Undergradstudent in undergradstudents)
 
                             case "m":
                             //MakeList(gradstudents);
-                            Console.WriteLine("What is the new major of the student");
-                            Undergradstudent.Major = Console.ReadLine();
-                            Console.WriteLine($"The Entry for the Gradstudent is now {Undergradstudent.StudName} {Undergradstudent.StudId}{Undergradstudent.Major}");
+                            //Updating process
+                    //string newPrevDegree;
+                    
+                Console.WriteLine($"Let's update {Undergradstudent.StudName}'s information");
+                //Console.WriteLine("Please update student's name");
+                //string StudName = (Console.ReadLine());
+                Console.WriteLine("Please update student's date of birth (e.g. 10/22/1987)");
+                Undergradstudent.DateOfBirth = DateTime.Parse(Console.ReadLine());
+                Console.WriteLine("Please update the student's ID Number");
+                Undergradstudent.StudId = long.Parse(Console.ReadLine());
+                Console.WriteLine("Please update the student's major");
+                Undergradstudent.Major = (Console.ReadLine());
+                Console.WriteLine("Please update the student's GPA");
+                Undergradstudent.GPA = float.Parse(Console.ReadLine());
+                //Console.WriteLine("Please update the student's Previous highschool");
+                //Undergradstudent. = (Console.ReadLine());
+                //Console.WriteLine("Please update by entering one of the following numbers for the student's classification:");
+                //Console.WriteLine("1) Freshman, 2) Sophomore, 3) Junior, 4) Senior");
+                //Undergradstudent.Classification = Convert.ToInt32(Console.ReadLine());
+
+                //Now we update the Undergrad list with the information from the user inputs
+                //undergradstudents.Add(new Undergradstudent(StudName, DateTime, StudID, Major, GPA, PrevHighSchool, Classification));
+
+//End updating process
+                            Console.WriteLine($"The Entry for the undergradGradstudent is now {Undergradstudent.StudName} {Undergradstudent.StudId}{Undergradstudent.Major}");
                             CreateMenu(gradstudents, undergradstudents);
                             validChoice = false;
                             break;
