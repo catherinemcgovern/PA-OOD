@@ -181,7 +181,7 @@ namespace NewStudentDatabase
                     float newGPA;
                     //string newPrevDegree;
                     
-                Console.WriteLine("Let's create a new gradstudent");
+                Console.WriteLine("Let's create a new Graduate student");
                 Console.WriteLine("Please enter the student's name");
                 string newName = (Console.ReadLine());
                 Console.WriteLine("Please enter student's date of birth (e.g. 10/22/1987)");
@@ -200,7 +200,7 @@ namespace NewStudentDatabase
                 string newUndergradMajor = (Console.ReadLine());
                 Console.WriteLine("Please enter the student's Undergraduate GPA");
                 float newUgGPA = float.Parse(Console.ReadLine());
-                Console.WriteLine("Please enter the student's Undergraduate GPA");
+                Console.WriteLine("Please enter the student's Previous High School");
                 string newPrevHighSchool = (Console.ReadLine());
                 Console.WriteLine("Please enter one of the following numbers for the student's classification:");
                 Console.WriteLine("1) Freshman, 2) Sophomore, 3) Junior, 4) Senior");
@@ -261,8 +261,24 @@ CreateMenu(gradstudents, undergradstudents);
                     case "m":
                     //MakeList(gradstudents);
                     //Now we are going to update the studentinformation
-                    Console.WriteLine("What is the new major of the student");
-                    Gradstudent.Major = Console.ReadLine();
+                  
+                  //begin updating grad student information
+
+                Console.WriteLine($"Let's update {Gradstudent.StudName}'s information (Undergraduate Student)");
+                //Console.WriteLine("Please update the Under student's name");
+                //string StudName = (Console.ReadLine());
+                Console.WriteLine("Please update student's date of birth (e.g. 10/22/1987)");
+                Gradstudent.DateOfBirth = DateTime.Parse(Console.ReadLine());
+                Console.WriteLine("Please update the student's ID Number");
+                Gradstudent.StudId = long.Parse(Console.ReadLine());
+                Console.WriteLine("Please update the student's major");
+                Gradstudent.Major = (Console.ReadLine());
+                Console.WriteLine("Please update the student's GPA");
+                Gradstudent.GPA = float.Parse(Console.ReadLine());
+
+
+
+                  //end updating grad student information
                     Console.WriteLine($"The Entry for the Gradstudent is now {Gradstudent.StudName} {Gradstudent.StudId}{Gradstudent.Major}");
                     CreateMenu(gradstudents, undergradstudents);
                     validChoice = false;
@@ -302,7 +318,7 @@ foreach  (var Undergradstudent in undergradstudents)
                             
                                 //switch statement for updates
 
-                                Console.WriteLine("Select M to update the student's information");
+                                Console.WriteLine("Select M to update the Undergraduate student's information");
                                 
                                 bool validChoice;
         
@@ -323,8 +339,8 @@ foreach  (var Undergradstudent in undergradstudents)
                             //Updating process
                     //string newPrevDegree;
                     
-                Console.WriteLine($"Let's update {Undergradstudent.StudName}'s information");
-                //Console.WriteLine("Please update student's name");
+                Console.WriteLine($"Let's update {Undergradstudent.StudName}'s information (Undergraduate Student)");
+                //Console.WriteLine("Please update the Under student's name");
                 //string StudName = (Console.ReadLine());
                 Console.WriteLine("Please update student's date of birth (e.g. 10/22/1987)");
                 Undergradstudent.DateOfBirth = DateTime.Parse(Console.ReadLine());
