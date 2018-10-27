@@ -56,13 +56,9 @@ namespace NewStudentDatabase
                 Console.WriteLine("a) Add a GradStudent to the list"); 
                 Console.WriteLine("d) Add an Undergraduate Student to the list"); 
                 Console.WriteLine(); 
-                Console.WriteLine("Search-Update--------------------------------------------");
-                Console.WriteLine("Search/Update Grad Student Information:");
-                Console.WriteLine("y) Search by name"); 
+                Console.WriteLine("y) Search students by name and update information"); 
+                Console.WriteLine("z) Search students by StudentID and update information"); //not done yet
                 Console.WriteLine("s) search by student ID"); 
-                Console.WriteLine("Search/Update Undergraduate Student Information:"); 
-                Console.WriteLine("z) Search by name"); 
-                Console.WriteLine("us) search by student ID"); 
                 Console.WriteLine("--------------------------------------------");                
                 Console.WriteLine("x) Exit the system"); 
  
@@ -87,22 +83,20 @@ namespace NewStudentDatabase
                     break;
                     
                     case "a":
-                    AddAGradStudent(gradstudents);
+                    AddAGradStudent(gradstudents, undergradstudents);
+                    validChoice = false;
+                    break;
+
+                    case "d":
+                    AddAnUnderGradStudent(gradstudents, undergradstudents);
                     validChoice = false;
                     break;
 
                     case "y":
                   Console.WriteLine("please enter someone's name");
                     string term = Console.ReadLine();
-                    SearchGradStudent(gradstudents, undergradstudents, term);
+                    SearchStudentName(gradstudents, undergradstudents, term);
                     break;
-
-                    case "z":
-                  Console.WriteLine("please enter someone's name");
-                    string ugterm = Console.ReadLine();
-                    SearchUndergradStudent(gradstudents, undergradstudents, ugterm);
-                    break;
- 
 
                     case "x":
                         Quit();
@@ -143,7 +137,7 @@ namespace NewStudentDatabase
                     }
                 }
 
-            public static void AddAGradStudent(List<Gradstudent> gradstudents)
+            public static void AddAGradStudent(List<Gradstudent> gradstudents, List<Undergradstudent> undergradstudents)
                 {
                     //long newStudID;
                     //string major;
@@ -180,38 +174,72 @@ namespace NewStudentDatabase
                    {
                         Console.WriteLine(Gradstudent);
                     }
-
-
-
-
-
-
-                //"John", new DateTime(2019, 10, 2), 12234, "CIS", 3,"BSc"
-                // DateTime dateOfBirth, long studId, string major, float gpa, string previousDegree) : base (studentName, dateOfBirth, studId, major, gpa)
-
+            CreateMenu(gradstudents, undergradstudents);
                 
 
     }
-    
 
-//THis is the start of the search/update function
+//This is the add an UNDERGRADUATE student function
+                public static void AddAnUnderGradStudent(List<Gradstudent> gradstudents, List<Undergradstudent> undergradstudents)
+                {
+                    //long newStudID;
+                    //string major;
+                    float newGPA;
+                    //string newPrevDegree;
+                    
+                Console.WriteLine("Let's create a new gradstudent");
+                Console.WriteLine("Please enter the student's name");
+                string newName = (Console.ReadLine());
+                Console.WriteLine("Please enter student's date of birth (e.g. 10/22/1987)");
+                DateTime NewDateTime = DateTime.Parse(Console.ReadLine());
+                Console.WriteLine("Please enter the student's ID Number");
+                long newStudID = long.Parse(Console.ReadLine());
+                Console.WriteLine("Please enter the student's major");
+                string newMajor = (Console.ReadLine());
+                Console.WriteLine("Please enter the student's GPA");
+                newGPA = float.Parse(Console.ReadLine());
+                Console.WriteLine("Please enter the student's Previous degree");
+                string newPrevDegree = (Console.ReadLine());
+                Console.WriteLine("Please enter the student's Previous university");
+                string newPrevUniversity = (Console.ReadLine());
+                Console.WriteLine("Please enter the student's Undergraduate major");
+                string newUndergradMajor = (Console.ReadLine());
+                Console.WriteLine("Please enter the student's Undergraduate GPA");
+                float newUgGPA = float.Parse(Console.ReadLine());
+                Console.WriteLine("Please enter the student's Undergraduate GPA");
+                string newPrevHighSchool = (Console.ReadLine());
+                Console.WriteLine("Please enter one of the following numbers for the student's classification:");
+                Console.WriteLine("1) Freshman, 2) Sophomore, 3) Junior, 4) Senior");
+                int newClassification = Convert.ToInt32(Console.ReadLine());
+
+                //Now we update the Undergrad list with the information from the user inputs
+                undergradstudents.Add(new Undergradstudent(newName, NewDateTime, newStudID, newMajor, newGPA, newPrevHighSchool, newClassification));
+
+                Console.WriteLine("Let's see if the list changed");
+
+                 foreach (var Undergradstudent in undergradstudents)
+                   {
+                        Console.WriteLine(Undergradstudent);
+                    }
+
+                
+CreateMenu(gradstudents, undergradstudents);
+    }
 
 
-//SearchUndergradStudent(gradstudents, undergradstudents, ugterm)
+//Here ends the add an UNDERGRADUATE student function
 
 
+//THis is the start of the search/update function using the STUDENT NAME
+    public static void SearchStudentName(List<Gradstudent> gradstudents, List<Undergradstudent> undergradstudents, string term)        
 
-
-            public static void SearchGradStudent(List<Gradstudent> gradstudents, List<Undergradstudent> undergradstudents, string term)
-
-            
-
-    // public static List<Gradstudent> FindInGtudent(string term)
     {
     List<Gradstudent> list = new List<Gradstudent>();
     List<Undergradstudent> ulist = new List<Undergradstudent>();
 
     Console.WriteLine($"The method ran!!!!");
+
+    //Checking for match with gradstudents
         foreach  (var Gradstudent in gradstudents)
             {
                // Console.WriteLine(Gradstudent);
@@ -220,21 +248,14 @@ namespace NewStudentDatabase
                     {
                     
                         Console.WriteLine($"Here's what I found: {Gradstudent.StudName}{Gradstudent.StudId}{Gradstudent.Major}{Gradstudent.GPA}{Gradstudent.Major}{Gradstudent.Major}");
-                    
-              
-
-                        //switch statement for updates
-
+//switch statement for updates
                         Console.WriteLine("what do you want to update");
                         Console.WriteLine("select m to change the student's major");
                         bool validChoice;
  
                         do // inner do...while loop is to keep looping until the user picks a valid menu selection
-                        {            //Menu Stuff
+                        {          
                         validChoice = true;
-
-              
-
 
                          try
                             {
@@ -242,7 +263,6 @@ namespace NewStudentDatabase
                             var command = Console.ReadLine();
                             switch (command)
                             {
-
 
                     case "m":
                     //MakeList(gradstudents);
@@ -252,10 +272,9 @@ namespace NewStudentDatabase
                     CreateMenu(gradstudents, undergradstudents);
                     validChoice = false;
                     break;
-
-                         
+          
                     case "e":
-                    Main();
+                    CreateMenu(gradstudents, undergradstudents);
                       break; 
                     default: 
                         validChoice = false;
@@ -275,56 +294,26 @@ namespace NewStudentDatabase
 
                     }}}
 
-Console.WriteLine("Term could not be found");
-                            Console.WriteLine("Please select a menu option");
-                            CreateMenu(gradstudents, undergradstudents);
+                    //checking for match with undergraduate students
 
-
-
-                        //end switch statements for updates
-
-                       // break; // If you only want to find the first instance a break here would be best for your application
-                    
-                }
-
-
-//Start of undergraduate search
-
-    
-
-        public static void SearchUndergradStudent(List<Gradstudent> gradstudents, List<Undergradstudent> undergradstudents, string ugterm)
-                    
-
-            // public static List<Gradstudent> FindInGtudent(string term)
-            {
-            List<Gradstudent> list = new List<Gradstudent>();
-            List<Undergradstudent> ulist = new List<Undergradstudent>();
-
-            Console.WriteLine($"The method ran!!!!");
-                foreach  (var Undergradstudent in undergradstudents)
+foreach  (var Undergradstudent in undergradstudents)
                     {
                     // Console.WriteLine(Gradstudent);
                         {
-                    if (Undergradstudent.StudName == ugterm)
+                    if (Undergradstudent.StudName == term)
                             {
                             
                                 Console.WriteLine($"Here's what I found: {Undergradstudent.StudName}{Undergradstudent.StudId}{Undergradstudent.Major}{Undergradstudent.GPA}");
                             
-                            
-                            
-
                                 //switch statement for updates
 
                                 Console.WriteLine("what do you want to update");
-                                Console.WriteLine("select m to change the student's major");
+                                Console.WriteLine("1) student's major 2_");
                                 bool validChoice;
         
                                 do // inner do...while loop is to keep looping until the user picks a valid menu selection
                                 {            //Menu Stuff
                                 validChoice = true;
-
-                    
-
 
                                 try
                                     {
@@ -342,8 +331,7 @@ Console.WriteLine("Term could not be found");
                             CreateMenu(gradstudents, undergradstudents);
                             validChoice = false;
                             break;
-
-                                
+                              
                             case "e":
                             Main();
                             break; 
@@ -364,22 +352,18 @@ Console.WriteLine("Term could not be found");
                     } while (validChoice == false); // Inner loop ends when validChoice is true
 
                         }}}
-                    
+
+
+
+
+                    //end matching process
+
 Console.WriteLine("Term could not be found");
-                                    Console.WriteLine("Please select a menu option");
-                                    CreateMenu(gradstudents, undergradstudents);
+                            Console.WriteLine("Please select a menu option");
+                            CreateMenu(gradstudents, undergradstudents);
 
-                    
-            }
-                        //end switch statements for updates
-
-                       // break; // If you only want to find the first instance a break here would be best for your application
-                    
-
-//End of undergraduate searc
-
-            
-        
+                        //end switch statements for updates                    
+                }
 
            static void Quit()
             //this method runs if no game has been played yet...(or going to be played...) a non-option for reals quit type of thing 
