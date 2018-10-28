@@ -15,14 +15,14 @@ namespace StudentDatabase
     public class Undergradstudent : Student
     {
 
-          private string PreviousHighSchool  {get; set;}
+          public string PreviousHighSchool  {get; set;}
 
-          private enum Classifications 
+          public enum Classifications 
           {
               Freshman, Sophomore, Junior, Senior
           }
 
-          private Classifications Classification {get; set;}
+          public Classifications Classification {get; set;}
           
 
           public Undergradstudent(string studentName, DateTime dateOfBirth, long studId, string major, float gpa, string previousHighSchool, int classification) : base (studentName, dateOfBirth, studId, major, gpa)

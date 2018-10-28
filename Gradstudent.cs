@@ -15,12 +15,12 @@ namespace StudentDatabase
     public class Gradstudent : Student
     {
 
-            private string PreviousDegree {get; set;}
-            private string PreviousUniversity {get; set;}
+            public string PreviousDegree {get; set;}
+            public string PreviousUniversity {get; set;}
 
-            private string UndergradMajor {get; set;}
+            public string UndergradMajor {get; set;}
 
-            private float UgGPA {get; set;}
+            public float UgGPA {get; set;}
 
             public Gradstudent(string studentName, DateTime dateOfBirth, long studId, string major, float gpa, string previousDegree, string previousUniversity, string undergradMajor, float ugGPA) : base (studentName, dateOfBirth, studId, major, gpa)
 
